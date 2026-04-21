@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMAfrica Foundation | Empowering Ghana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ghana-gold: #D4AF37;
+            --royal-blue: #002366;
+            --kente-red: #CE1126;
+            --kente-green: #006B3F;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        .h-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-dark {
+            background: rgba(0, 35, 102, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .kente-border {
+            height: 6px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--ghana-gold) 0, var(--ghana-gold) 20px,
+                var(--kente-red) 20px, var(--kente-red) 40px,
+                #000 40px, #000 60px,
+                var(--kente-green) 60px, var(--kente-green) 80px
+            );
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #002366 0%, #001233 100%);
+        }
+
+        .gold-text {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-gold {
+            background: linear-gradient(to right, #D4AF37, #B38728);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(179, 135, 40, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(179, 135, 40, 0.5);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--royal-blue); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Kente Top Accent -->
+    <div class="kente-border w-full fixed top-0 z-50"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center mt-1">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
+                <span class="text-blue-900 font-bold text-xl">NM</span>
+            </div>
+            <span class="font-bold text-xl tracking-tight hidden sm:block" id="nav-logo-text">NMAfrica Foundation</span>
+        </div>
+        
+        <div class="hidden md:flex gap-8 items-center font-medium">
+            <a href="#about" class="hover:text-amber-500 transition-colors">Our Story</a>
+            <a href="#impact" class="hover:text-amber-500 transition-colors">Impact</a>
+            <a href="#programs" class="hover:text-amber-500 transition-colors">Programs</a>
+            <button onclick="toggleDonateModal()" class="btn-gold text-white px-6 py-2 rounded-full font-bold">Donate Now</button>
+        </div>
+
+        <button class="md:hidden text-2xl" id="mobile-menu-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient pt-20">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style="animation-delay: 2s"></div>
+
+        <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-white space-y-6">
+                <div class="inline-block px-4 py-1 rounded-full glass-dark text-amber-400 text-sm font-semibold tracking-wider uppercase border border-amber-400/30">
+                    Based in Accra, Ghana
+                </div>
+                <h1 class="text-5xl md:text-7xl h-serif leading-tight">
+                    Empowering the <span class="gold-text">Next Generation</span> of Africa.
+                </h1>
+                <p class="text-lg text-blue-100 max-w-xl leading-relaxed opacity-90">
+                    The NMAfrica Foundation is dedicated to transforming lives through sustainable education, healthcare accessibility, and economic empowerment in rural Ghana.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <button onclick="document.getElementById('programs').scrollIntoView({behavior:'smooth'})" class="btn-gold text-white px-8 py-4 rounded-xl font-bold text-lg">Explore Programs</button>
+                    <button class="glass px-8 py-4 rounded-xl font-bold text-lg text-white border-white/20 hover:bg-white/20 transition-all">Watch Our Story</button>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="glass p-4 rounded-3xl relative">
+                    <!-- Placeholder for Impactful Image -->
+                    <div class="bg-blue-900/50 w-full aspect-[4/5] md:w-[400px] rounded-2xl overflow-hidden relative group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent opacity-60"></div>
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Smiling children in Ghana" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-700">
+                        
+                        <div class="absolute bottom-6 left-6 right-6 glass p-4 rounded-xl">
+                            <p class="text-sm font-semibold text-blue-900 italic">"Giving every child in Ghana the chance to dream big."</p>
+                            <p class="text-xs mt-1 text-slate-600">— Nana Mensah, Founder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section id="impact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center space-y-2 scroll-reveal">
+                    <p class="text-4xl md:text-5xl font-bold text-blue-900">12k+</p>
+                    <p class="text-sm uppercase tracking-widest text-slate-500 font-semibold">Meals Served</p>
+                </div>
+                <div class="text-center space-y-2 scroll-reveal" style="transition-delay: 0.1s">
+                    <p class="text-4xl md:text-5xl font-bold text-amber-500">45</p>
+                    <p class="text-sm uppercase tracking-widest text-slate-500 font-semibold">Schools Built</p>
+                </div>
+                <div class="text-center space-y-2 scroll-reveal" style="transition-delay: 0.2s">
+                    <p class="text-4xl md:text-5xl font-bold text-blue-900">2.5k</p>
+                    <p class="text-sm uppercase tracking-widest text-slate-500 font-semibold">Scholarships</p>
+                </div>
+                <div class="text-center space-y-2 scroll-reveal" style="transition-delay: 0.3s">
+                    <p class="text-4xl md:text-5xl font-bold text-amber-500">100%</p>
+                    <p class="text-sm uppercase tracking-widest text-slate-500 font-semibold">Direct Impact</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Grid -->
+    <section id="programs" class="py-24 bg-slate-50 relative overflow-hidden">
+        <!-- Kente Pattern Background Element -->
+        <div class="absolute top-0 right-0 w-64 h-64 opacity-5 rotate-12 pointer-events-none">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h20v20H0zm20 20h20v20H20zm20 20h20v20H40zm20 20h20v20H60zm20 20h20v20H80z" fill="currentColor"/>
+                <path d="M20 0h20v20H20zm20 20h20v20H40zm20 40h20v20H60zm20 20h20v20H80z" fill="#D4AF37"/>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6">
+            <div class="max-w-2xl mb-16">
+                <h2 class="text-4xl h-serif text-blue-900 mb-4">Our Core Programs</h2>
+                <p class="text-slate-600 leading-relaxed">Sustainable development isn't about one-time handouts. We focus on three pillars that create lasting change in Ghanaian communities.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="glass p-8 rounded-3xl border-t-4 border-t-amber-500 group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center mb-6 text-amber-600 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">Quality Education</h3>
+                    <p class="text-slate-600 mb-6">Building modern classrooms and providing digital learning tools for children in the Ashanti and Northern regions.</p>
+                    <a href="#" class="text-blue-900 font-bold flex items-center gap-2 group-hover:gap-4 transition-all">Learn More <span>&rarr;</span></a>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="glass p-8 rounded-3xl border-t-4 border-t-blue-900 group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 text-blue-900 group-hover:bg-blue-900 group-hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">Health & Wellness</h3>
+                    <p class="text-slate-600 mb-6">Mobile clinics that reach the unreachable, providing essential maternal care and clean water initiatives.</p>
+                    <a href="#" class="text-blue-900 font-bold flex items-center gap-2 group-hover:gap-4 transition-all">Learn More <span>&rarr;</span></a>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="glass p-8 rounded-3xl border-t-4 border-t-green-600 group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-6 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">Youth Empowerment</h3>
+                    <p class="text-slate-600 mb-6">Vocational training and micro-loans for young entrepreneurs to start sustainable businesses in their hometowns.</p>
+                    <a href="#" class="text-blue-900 font-bold flex items-center gap-2 group-hover:gap-4 transition-all">Learn More <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section (Translucent Card) -->
+    <section class="py-24 bg-blue-900 text-white relative">
+        <div class="absolute inset-0 opacity-10 overflow-hidden pointer-events-none">
+            <div class="kente-border absolute bottom-0 w-full opacity-20"></div>
+            <!-- Large decorative icon -->
+            <svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]" viewBox="0 0 24 24" fill="white">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="glass-dark p-12 md:p-20 rounded-[40px] border border-white/10 text-center max-w-4xl mx-auto shadow-2xl">
+                <h2 class="text-4xl md:text-5xl h-serif mb-8 leading-tight">Your Contribution Changes <br><span class="gold-text">A Real Life</span></h2>
+                <p class="text-blue-100 text-lg mb-12 opacity-80 max-w-2xl mx-auto">
+                    We ensure that 100% of public donations go directly to our field programs. Join our community of monthly donors from around the world.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="bg-white text-blue-900 px-8 py-4 rounded-2xl font-bold hover:bg-amber-500 hover:text-white transition-all">GHS 50</button>
+                    <button class="bg-white text-blue-900 px-8 py-4 rounded-2xl font-bold hover:bg-amber-500 hover:text-white transition-all">GHS 200</button>
+                    <button class="bg-white text-blue-900 px-8 py-4 rounded-2xl font-bold hover:bg-amber-500 hover:text-white transition-all">GHS 500</button>
+                    <div class="relative w-full sm:w-auto">
+                        <input type="number" placeholder="Other Amount" class="bg-white/10 border border-white/20 px-8 py-4 rounded-2xl font-bold w-full sm:w-48 text-white placeholder-white/50 focus:outline-none focus:border-amber-400">
+                    </div>
+                </div>
+                
+                <button class="btn-gold text-white px-12 py-5 rounded-2xl font-bold text-xl mt-12 w-full sm:w-auto">Confirm Donation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 pt-20 pb-10 border-t border-slate-200">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-xs">NM</span>
+                        </div>
+                        <span class="font-bold text-lg text-blue-900">NMAfrica Foundation</span>
+                    </div>
+                    <p class="text-slate-500 text-sm">Building a brighter future for the Ghanaian youth, one community at a time.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-900 hover:bg-blue-900 hover:text-white transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-blue-900 mb-6 uppercase tracking-wider text-xs">Quick Links</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm">
+                        <li><a href="#" class="hover:text-blue-900">Education Initiatives</a></li>
+                        <li><a href="#" class="hover:text-blue-900">Healthcare Projects</a></li>
+                        <li><a href="#" class="hover:text-blue-900">Volunteer Programs</a></li>
+                        <li><a href="#" class="hover:text-blue-900">Financial Reports</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-blue-900 mb-6 uppercase tracking-wider text-xs">Headquarters</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm leading-relaxed">
+                        <li>No. 15 Independence Avenue,<br>Accra, Ghana</li>
+                        <li>+233 (0) 24 555 0123</li>
+                        <li>hello@nmafricafoundation.org</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-blue-900 mb-6 uppercase tracking-wider text-xs">Join Our Newsletter</h4>
+                    <div class="flex flex-col gap-2">
+                        <input type="email" placeholder="Your Email Address" class="bg-white border border-slate-200 px-4 py-3 rounded-xl focus:outline-none focus:border-blue-900 text-sm">
+                        <button class="btn-gold text-white px-4 py-3 rounded-xl font-bold text-sm">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kente-border opacity-30 mb-8"></div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center text-slate-400 text-xs gap-4">
+                <p>&copy; 2024 NMAfrica Foundation. All Rights Reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-blue-900">Privacy Policy</a>
+                    <a href="#" class="hover:text-blue-900">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Donation Modal (Hidden by Default) -->
+    <div id="donateModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-blue-900/40 backdrop-blur-sm">
+        <div class="glass max-w-lg w-full p-8 rounded-3xl shadow-2xl relative animate-in fade-in zoom-in duration-300">
+            <button onclick="toggleDonateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-blue-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l18 18" />
+                </svg>
+            </button>
+            
+            <h3 class="text-3xl h-serif text-blue-900 mb-2">Secure Donation</h3>
+            <p class="text-slate-500 mb-6">Enter your details to support our mission.</p>
+            
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" placeholder="First Name" class="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl">
+                    <input type="text" placeholder="Last Name" class="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl">
+                </div>
+                <input type="email" placeholder="Email Address" class="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl">
+                <div class="relative">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">GHS</span>
+                    <input type="number" placeholder="Amount" class="w-full bg-white border border-slate-200 pl-14 pr-4 py-3 rounded-xl">
+                </div>
+                <button class="btn-gold w-full text-white py-4 rounded-xl font-bold text-lg">Proceed to Payment</button>
+                <p class="text-[10px] text-center text-slate-400 uppercase tracking-widest">Secured by PayStack & Flutterwave</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const navLogoText = document.getElementById('nav-logo-text');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass', 'shadow-md');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+                navbar.style.color = '#002366';
+            } else {
+                navbar.classList.remove('glass', 'shadow-md');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+                navbar.style.color = 'white';
+            }
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Modal Toggle
+        function toggleDonateModal() {
+            const modal = document.getElementById('donateModal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Mobile Menu (Simple toggle for demo)
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            toggleDonateModal(); // For now, redirect to donate for simplicity
+        });
+    </script>
+</body>
+</html>
